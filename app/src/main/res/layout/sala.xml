@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="400dp"
+        android:layout_height="219dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/fabricaDeSoftware"
+                android:layout_width="350dp"
+                android:layout_height="200dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginLeft="28dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.09"
+                app:srcCompat="@drawable/fabricaeesoftwareverdeescuro" />
+
+            <TextView
+                android:id="@+id/nomeSala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#BE000000"
+                android:shadowColor="#000000"
+                android:text="Fábrica de Software"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#3B8019"
+                android:textColorHighlight="#00FFFFFF"
+                android:textColorHint="#020202"
+                android:textColorLink="#000000"
+                android:textIsSelectable="true"
+                android:textSize="24sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintHorizontal_bias="0.072"
+                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.094" />
+
+            <TextView
+                android:id="@+id/Andar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:background="#BE000000"
+                android:shadowColor="#000000"
+                android:text="Andar"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#3B8019"
+                android:textColorHighlight="#00FFFFFF"
+                android:textColorHint="#020202"
+                android:textColorLink="#000000"
+                android:textIsSelectable="true"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="@id/nomeSala"
+                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.090" />
+
+            <TextView
+                android:id="@+id/statusSala"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="160dp"
+                android:background="#BE000000"
+                android:shadowColor="#000000"
+                android:text="Status"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="#3B8019"
+                android:textColorHighlight="#00FFFFFF"
+                android:textColorHint="#020202"
+                android:textColorLink="#000000"
+                android:textIsSelectable="true"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintHorizontal_bias="0.03"
+                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.542" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
