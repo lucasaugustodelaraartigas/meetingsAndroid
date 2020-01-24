@@ -25,7 +25,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/fabricaDeSoftware"
+                android:id="@+id/fotoSala"
                 android:layout_width="350dp"
                 android:layout_height="200dp"
                 android:layout_marginStart="28dp"
@@ -37,7 +37,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.09"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/fabricaeesoftwareverdeescuro" />
 
             <TextView
@@ -56,9 +56,9 @@
                 android:textIsSelectable="true"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintEnd_toEndOf="@+id/nomeSala"
                 app:layout_constraintHorizontal_bias="0.072"
-                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintStart_toStartOf="@+id/nomeSala"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.094" />
 
@@ -79,9 +79,9 @@
                 android:textIsSelectable="true"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="@id/nomeSala"
-                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintEnd_toEndOf="@+id/nomeSala"
                 app:layout_constraintHorizontal_bias="0.03"
-                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintStart_toStartOf="@+id/nomeSala"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.090" />
 
@@ -102,9 +102,9 @@
                 android:textIsSelectable="true"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/fabricaDeSoftware"
+                app:layout_constraintEnd_toEndOf="@+id/nomeSala"
                 app:layout_constraintHorizontal_bias="0.03"
-                app:layout_constraintStart_toStartOf="@+id/fabricaDeSoftware"
+                app:layout_constraintStart_toStartOf="@+id/nomeSala"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.542" />
 
