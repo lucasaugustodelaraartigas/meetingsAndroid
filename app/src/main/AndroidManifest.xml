@@ -10,9 +10,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login"></activity>
-        <activity android:name=".Activitieis.MainActivity">
+            android:name=".Activitieis.MainActivity"></activity>
+    <activity
+            android:name=".Activitieis.MenuReservasActivity"
+        android:label="@string/title_activity_login"></activity>
+        <activity android:name=".Activitieis.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

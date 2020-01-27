@@ -1,4 +1,4 @@
-package com.meetings.Activitieis;
+package com.meetings.Adapters;
 
 import androidx.annotation.NonNull;
 
@@ -29,9 +29,7 @@ public class ContaUsuario implements  Serializable{
         return email;
     }
 
-    public static List<ContaUsuario> getContaUsuarios() {
-        return contaUsuarios;
-    }
+    public static List<ContaUsuario> getContaUsuarios() { return contaUsuarios; }
 
     public void setId(int id) {
         this.id = id;
@@ -49,7 +47,4 @@ public class ContaUsuario implements  Serializable{
         this.email = email;
     }
 
-    public boolean temIdValido() {
-        return id > 0;
-    }
 }

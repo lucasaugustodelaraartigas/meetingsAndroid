@@ -16,10 +16,10 @@ public class ListaSalasAdapter extends BaseAdapter {
     private final List<Sala> salas = new ArrayList<>();
     private Context context;
 
-    public void atualiza(List<Sala> salas) {
+    /*public void atualiza(List<Sala> salas) {
         this.salas.clear();
         this.salas.addAll(salas);
-    }
+    }*/
 
     @Override
     public int getCount() {
@@ -45,7 +45,7 @@ public class ListaSalasAdapter extends BaseAdapter {
     }
 
     private void vincula(View view, Sala sala) {
-        TextView nome = view.findViewById(R.id.nomeSala);
+        TextView nomeSala = view.findViewById(R.id.nomeSala);
         //nome.setText(sala.getNome());
     }
 

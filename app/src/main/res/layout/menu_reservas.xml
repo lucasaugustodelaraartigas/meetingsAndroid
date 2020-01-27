@@ -65,47 +65,54 @@
 
                 <EditText
                     android:id="@+id/hora_inicio"
-                    android:layout_width="149dp"
-                    android:layout_height="43dp"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
                     android:ems="10"
                     android:inputType="time"
+                    app:layout_constraintBottom_toTopOf="@+id/butao_reservar"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.152"
+                    app:layout_constraintHorizontal_bias="0.223"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="573dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/switch_projetor"
+                    app:layout_constraintVertical_bias="0.505" />
 
                 <TextView
                     android:id="@+id/hora_inicio_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hora de início"
+                    android:text="Início"
                     android:textSize="24sp"
+                    app:layout_constraintBottom_toTopOf="@+id/hora_inicio"
                     app:layout_constraintEnd_toEndOf="@+id/hora_inicio"
-                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintHorizontal_bias="0.483"
                     app:layout_constraintStart_toStartOf="@+id/hora_inicio"
-                    tools:layout_editor_absoluteY="537dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/informação_reunião"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <EditText
                     android:id="@+id/hora_fim"
-                    android:layout_width="149dp"
-                    android:layout_height="43dp"
+                    android:layout_width="120dp"
+                    android:layout_height="40dp"
                     android:ems="10"
                     android:inputType="time"
+                    app:layout_constraintBottom_toTopOf="@+id/butao_cancelar_reserva"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.835"
                     app:layout_constraintStart_toStartOf="parent"
-                    tools:layout_editor_absoluteY="570dp" />
+                    app:layout_constraintTop_toBottomOf="@+id/switch_ar_condicionado" />
 
                 <TextView
                     android:id="@+id/hora_termino_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hora de término"
+                    android:text="Término"
                     android:textSize="24sp"
+                    app:layout_constraintBottom_toTopOf="@+id/hora_fim"
                     app:layout_constraintEnd_toEndOf="@+id/hora_fim"
-                    app:layout_constraintHorizontal_bias="0.391"
+                    app:layout_constraintHorizontal_bias="0.593"
                     app:layout_constraintStart_toStartOf="@+id/hora_fim"
-                    tools:layout_editor_absoluteY="535dp" />
+                    app:layout_constraintTop_toTopOf="@+id/switch_ar_condicionado"
+                    app:layout_constraintVertical_bias="1.0" />
 
                 <Button
                     android:id="@+id/butao_reservar"
@@ -143,7 +150,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/meetingsLogo"
-                    app:layout_constraintVertical_bias="0.544" />
+                    app:layout_constraintVertical_bias="0.559" />
 
                 <CalendarView
                     android:id="@+id/calendarView2"
