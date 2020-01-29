@@ -20,23 +20,25 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    DAO dao = new DAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        if (dao.logado == false) {
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        } else {
+            setContentView(R.layout.activity_main);
+            ImageButton botaoCalendario = findViewById(R.id.botaoCalendario);
 
-        ImageButton botaoCalendario = findViewById(R.id.botaoCalendario);
+            botaoCalendario.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        botaoCalendario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    startActivity(new Intent(MainActivity.this, MenuReservasActivity.class));
 
-                startActivity(new Intent(MainActivity.this, MenuReservasActivity.class));
-
-            }
-        });
+                }
+            });
+        }
     }
-
 }
-

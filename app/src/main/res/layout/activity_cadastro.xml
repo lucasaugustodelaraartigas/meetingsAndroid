@@ -12,37 +12,19 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="">
 
-
     <Button
-        android:id="@+id/login"
-        android:layout_width="90dp"
-        android:layout_height="30dp"
-        android:layout_gravity="start"
-        android:background="#44B5E6"
-        android:enabled="true"
-        android:text="Logar"
-        android:textColor="#000000"
+        android:id="@+id/cadastrar"
+        android:layout_width="146dp"
+        android:layout_height="42dp"
+        android:background="#E45F08"
+        android:text="Cadastrar"
         android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
+        app:layout_constraintBottom_toTopOf="@+id/nomeCadastro"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toEndOf="@+id/meetingsLogo"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.112" />
-
-    <EditText
-        android:id="@+id/email"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="24dp"
-        android:hint="Email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintVertical_bias="0.116" />
 
     <ImageView
         android:id="@+id/meetingsLogo"
@@ -58,38 +40,48 @@
         app:srcCompat="@drawable/meetingslogo" />
 
     <EditText
-        android:id="@+id/senha"
+        android:id="@+id/nomeCadastro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="37dp"
 
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="436dp"
+        android:layout_marginBottom="20dp"
+        android:hint="Nome"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPersonName"
+        android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/emailCadastro"
+        app:layout_constraintEnd_toEndOf="@+id/emailCadastro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailCadastro" />
+
+    <EditText
+        android:id="@+id/senhaCadastro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
         android:hint="Senha"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:selectAllOnFocus="true"
+        app:layout_constraintEnd_toEndOf="@+id/emailCadastro"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/emailCadastro"
+        app:layout_constraintTop_toBottomOf="@+id/emailCadastro" />
+
+    <EditText
+        android:id="@+id/emailCadastro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.937"
+        app:layout_constraintHorizontal_bias="0.281"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email"
-        app:layout_constraintVertical_bias="0.053" />
-
-    <Button
-        android:id="@+id/fazerCadastro"
-        android:layout_width="146dp"
-        android:layout_height="42dp"
-        android:background="#E45F08"
-        android:text="Cadastrar"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/email"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toEndOf="@+id/meetingsLogo"
-        app:layout_constraintTop_toBottomOf="@+id/login"
-        app:layout_constraintVertical_bias="0.333" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
