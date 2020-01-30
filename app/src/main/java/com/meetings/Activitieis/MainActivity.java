@@ -3,29 +3,19 @@ package com.meetings.Activitieis;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.meetings.Adapters.ContaUsuario;
 import com.meetings.R;
-
-
-import android.view.MenuItem;
-import android.widget.ImageButton;
-import android.widget.Toast;
-
+import com.meetings.Services.LoginService;
 
 public class MainActivity extends AppCompatActivity {
-
-    DAO dao = new DAO();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (dao.logado == false) {
+        if (LoginService.logado == false) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         } else {
             setContentView(R.layout.activity_main);
