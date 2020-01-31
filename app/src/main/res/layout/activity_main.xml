@@ -25,13 +25,27 @@
         android:layout_height="0dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="20dp"
-        android:onClick="salasAlugadas"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/FundoInicio"
         app:layout_constraintEnd_toEndOf="@+id/FundoInicio"
         app:layout_constraintStart_toEndOf="@+id/MeetingsLogo"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@android:drawable/ic_menu_today" />
+
+    <ImageButton
+        android:id="@+id/botaoLogarFromConvidado"
+        android:visibility="invisible"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/FundoInicio"
+        app:layout_constraintEnd_toEndOf="@+id/FundoInicio"
+        app:layout_constraintStart_toEndOf="@+id/MeetingsLogo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
     <ImageView
         android:id="@+id/MeetingsLogo"

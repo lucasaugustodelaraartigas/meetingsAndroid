@@ -18,6 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText campoEmail;
     private EditText campoSenha;
     private ContaUsuario contaUsuario;
+    static public boolean convidado = false;
 
 
     public void validaLogin(){
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         if(returnLogin.contains("Login efetuado com sucesso!")){
             Toast.makeText(LoginActivity.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
             LoginService.logado = true;
+            convidado=false;
             startActivity(new Intent( LoginActivity.this, MainActivity.class));
         }else{
             Toast.makeText(LoginActivity.this, "Erro ao logar", Toast.LENGTH_SHORT).show();
@@ -49,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Button botaoLogin = findViewById(R.id.login);
         Button botaoFazerCadastro = findViewById(R.id.fazerCadastro);
+        Button botaoVerConvidado = findViewById(R.id.verConvidado);
 
         campoEmail = findViewById(R.id.email);
         campoSenha = findViewById(R.id.senha);
@@ -65,19 +68,20 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        botaoVerConvidado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                convidado = true;
+                LoginService.logado=false;
+                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            }
+        });
+
         botaoLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 validaLogin();
 
-                /*if (campoEmail.getText().toString().equals("lucas@wises.com.br") && campoSenha.getText().toString().equals("123"))
-                {
-                    Toast.makeText(LoginActivity.this, "Logado com sucesso", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-
-                }else{
-                    Toast.makeText(LoginActivity.this, "Erro ao logar", Toast.LENGTH_SHORT).show();
-                }*/
             }
         });
     }

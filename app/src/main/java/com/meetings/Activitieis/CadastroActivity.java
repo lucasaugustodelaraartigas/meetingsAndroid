@@ -1,10 +1,14 @@
 package com.meetings.Activitieis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,39 +30,51 @@ public class CadastroActivity extends AppCompatActivity {
     private EditText campoSenhaCadastro;
     private EditText campoNomeCadastro;
     private ContaUsuario contaUsuario;
+    int empSelected;
+    List<Organizacao> organizacoes = new ArrayList<>();
+    List<String> listaDeStrings = new ArrayList<>();
 
     public void validaCadastro() {
-
-
-//        Toast.makeText(CadastroService.this, result.toString(), Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(CadastroService.this, LoginActivity.class));
+        try {
+            String nome = campoNomeCadastro.getText().toString();
+            String email = campoEmailCadastro.getText().toString();
+            String senha = campoSenhaCadastro.getText().toString();
+            String retornoCadastro = new CadastroService().execute(email, nome, senha, Integer.toString(empSelected)).get();
+            if (retornoCadastro.equals("Usuário criado com sucesso")) {
+                Toast.makeText(CadastroActivity.this, retornoCadastro, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(CadastroActivity.this, LoginActivity.class));
+            } else {
+                Toast.makeText(CadastroActivity.this, retornoCadastro, Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
-        int empSelected;
         setTitle("Meetings");
 
         Button botaoCadastrar = findViewById(R.id.cadastrar);
-        ///final Spinner spinnerOrganizacoes = findViewById(R.id.spinnerOrganizacao);
+        final Spinner spinnerOrganizacoes = findViewById(R.id.spinnerOrganizacao);
 
 
         campoEmailCadastro = findViewById(R.id.emailCadastro);
         campoNomeCadastro = findViewById(R.id.nomeCadastro);
         campoSenhaCadastro = findViewById(R.id.senhaCadastro);
 
-//            spinnerOrganizacoes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//                @Override
-//                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                    empSelected=lista.get(position).getId();
-//                }
-//
-//                @Override
-//                public void onNothingSelected(AdapterView<?> parent) {
-//                }
-//            });
+        spinnerOrganizacoes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                empSelected = organizacoes.get(position).getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
 
 
         botaoCadastrar.setOnClickListener(new View.OnClickListener() {
@@ -74,59 +90,27 @@ public class CadastroActivity extends AppCompatActivity {
                 if (!hasFocus) {
                     String emailAfterTextChange = campoEmailCadastro.getText().toString();
                     if (emailAfterTextChange.contains("@")) {
-                        String[] emailCompleto = emailAfterTextChange.split("@");
-                        if (emailCompleto[1] != null && emailCompleto[1].length > 0) {
-                            String dominio = emailCompleto[1];
-                            if (dominio.contains(".")) {
-                                System.out.println("dominio: " + dominio);
+                        String dominio = emailAfterTextChange.substring(emailAfterTextChange.indexOf('@') + 1);
+                        if (dominio.contains(".")) {
+//                            String[] "dominio", a2={emailCompleto};
+//                            Log.i("teste", "onFocusChange: entrou");
 
-                                // aqui fazer request para puxar as organizacoes com o dominio informado
-                                try {
-                                    String retornoOrganizacoes = new OrganizacaoService().execute(dominio).get();
-                                    System.out.println(retornoOrganizacoes);
-
-                                    List<Organizacao> organizacoes = parseOrganizacoesArray(retornoOrganizacoes);
-                                    //spinnerOrganizacoes.setVisibility(View.VISIBLE);
-                                } catch (Exception e) {
-                                    e.printStackTrace();
-                                }
+                            try {
+                                String retornoOrganizacoes = new OrganizacaoService().execute(dominio).get();
+                                System.out.println(retornoOrganizacoes);
+                                organizacoes.clear();
+                                listaDeStrings.clear();
+                                List<Organizacao> organizacoes = parseOrganizacoesArray(retornoOrganizacoes);
+                                ArrayAdapter<String> adapter = new ArrayAdapter<>(CadastroActivity.this, android.R.layout.simple_spinner_item, listaDeStrings);
+                                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                spinnerOrganizacoes.setAdapter(adapter);
+                                spinnerOrganizacoes.setVisibility(View.VISIBLE);
+                            } catch (Exception e) {
+                                e.printStackTrace();
                             }
                         }
                     }
                 }
-        /*campoEmailCadastro.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-                System.out.println("chamou afterTextChanged");
-                try{
-                String emailAfterTextChange = campoEmailCadastro.getText().toString();
-                if(emailAfterTextChange.contains("@")){
-                    String[] emailCompleto = emailAfterTextChange.split("@");
-                    if(emailCompleto[1] != null && emailCompleto[1].length() > 0){
-                        String dominio = emailCompleto[1];
-                        if(dominio.contains(".")){
-                            System.out.println("dominio: " + dominio);
-                        }
-                    }
-                }
-            }
-                catch (Exception e){
-                    e.printStackTrace();
-                }
-
-        });
-
-    }*/
             }
         });
 
@@ -135,28 +119,30 @@ public class CadastroActivity extends AppCompatActivity {
     public List<Organizacao> parseOrganizacoesArray(String retornoOrganizacoes) {
         try {
             JSONArray jsonArray = new JSONArray(retornoOrganizacoes);
-            List<Organizacao> listaDeOrganizacoes = new ArrayList();
             if (jsonArray.length() > 0) {
-                for (int i = 0; i < jsonArray.length; i++) {
+
+                for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject obj = jsonArray.getJSONObject(i);
                     if (obj.has("id") && obj.has("nome") && obj.has("tipoOrganizacao")) {
                         int id = obj.getInt("id");
                         String nome = obj.getString("nome");
-                        int tipoOrganizacao = obj.getInt("tipoOrganizacao");
+                        String tipoOrganizacao = obj.getString("tipoOrganizacao");
                         Organizacao novaOrganizacao = new Organizacao();
                         novaOrganizacao.setId(id);
                         novaOrganizacao.setNome(nome);
                         novaOrganizacao.setTipoOrganizacao(tipoOrganizacao);
 
-                        listaDeOrganizacoes.add(novaOrganizacao);
+                        organizacoes.add(novaOrganizacao);
+                        listaDeStrings.add(novaOrganizacao.getNome());
                     }
                 }
-                return  listaDeOrganizacoes;
+                return organizacoes;
             } else {
                 return null;
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return null;
         }
     }
 }

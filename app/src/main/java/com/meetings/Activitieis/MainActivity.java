@@ -15,20 +15,36 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (LoginService.logado == false) {
+        setContentView(R.layout.activity_main);
+        ImageButton botaoLogarConvidado = findViewById(R.id.botaoLogarFromConvidado);
+        ImageButton botaoCalendario = findViewById(R.id.botaoCalendario);
+        if (LoginService.logado == false && LoginActivity.convidado == false) {
             startActivity(new Intent(MainActivity.this, LoginActivity.class));
         } else {
-            setContentView(R.layout.activity_main);
-            ImageButton botaoCalendario = findViewById(R.id.botaoCalendario);
+            if(LoginActivity.convidado == true && LoginService.logado == false) {
+                botaoCalendario.setVisibility(View.INVISIBLE);
+                botaoLogarConvidado.setVisibility(View.VISIBLE);
+                botaoLogarConvidado.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LoginActivity.convidado=false;
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
 
-            botaoCalendario.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    }
+                });
+        }
+            if(LoginService.logado == true && LoginActivity.convidado == false) {
+                botaoLogarConvidado.setVisibility(View.INVISIBLE);
+                botaoCalendario.setVisibility(View.VISIBLE);
+                botaoCalendario.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                    startActivity(new Intent(MainActivity.this, MenuReservasActivity.class));
+                        startActivity(new Intent(MainActivity.this, MenuReservasActivity.class));
 
-                }
-            });
+                    }
+                });
+            }
         }
     }
 }

@@ -3,7 +3,7 @@ package com.meetings.models;
 public class Organizacao {
     int id;
     String nome;
-    int tipoOrganizacao;
+    String tipoOrganizacao;
 
     public int getId() {
         return id;
@@ -21,11 +21,11 @@ public class Organizacao {
         this.nome = nome;
     }
 
-    public int getTipoOrganizacao() {
+    public String getTipoOrganizacao() {
         return tipoOrganizacao;
     }
 
-    public void setTipoOrganizacao(int tipoOrganixacao) {
+    public void setTipoOrganizacao(String tipoOrganixacao) {
         this.tipoOrganizacao = tipoOrganizacao;
     }
 }
