@@ -1,6 +1,7 @@
 package com.meetings.Activitieis;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,8 +21,10 @@ public class LoginActivity extends AppCompatActivity {
     private ContaUsuario contaUsuario;
     static public boolean convidado = false;
 
+    SharedPreferences pref;
 
-    public void validaLogin(){
+
+    public void validaLogin() {
         String returnLogin = "0";
         String email = campoEmail.getText().toString();
         String password = campoSenha.getText().toString();
@@ -31,15 +34,27 @@ public class LoginActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(returnLogin.contains("Login efetuado com sucesso!")){
+        if (returnLogin.contains("Login efetuado com sucesso!")) {
             Toast.makeText(LoginActivity.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
             LoginService.logado = true;
-            convidado=false;
-            startActivity(new Intent( LoginActivity.this, MainActivity.class));
-        }else{
+            convidado = false;
+            SalvaEmail();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        } else {
             Toast.makeText(LoginActivity.this, "Erro ao logar", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void SalvaEmail() {
+        pref = getApplicationContext().getSharedPreferences("USER_DATA", 0);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("email", campoEmail.getText().toString());
+        editor.commit();
+        System.out.println(pref.getString("email", null));
+    }
+//    public void PegaEmail(){
+//        campoEmail.setText(pref.getString("key_name", null));
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 convidado = true;
-                LoginService.logado=false;
+                LoginService.logado = false;
                 startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
