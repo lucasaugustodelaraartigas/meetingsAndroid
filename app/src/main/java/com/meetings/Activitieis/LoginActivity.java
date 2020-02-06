@@ -1,5 +1,6 @@
 package com.meetings.Activitieis;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,26 +16,47 @@ import com.meetings.Adapters.ContaUsuario;
 import com.meetings.R;
 import com.meetings.Services.LoginService;
 
+import org.json.JSONObject;
+
 public class LoginActivity extends AppCompatActivity {
     private EditText campoEmail;
     private EditText campoSenha;
     private ContaUsuario contaUsuario;
     static public boolean convidado = false;
+    static public String returnLogin;
 
     SharedPreferences pref;
 
-
     public void validaLogin() {
-        String returnLogin = "0";
         String email = campoEmail.getText().toString();
         String password = campoSenha.getText().toString();
 
         try {
             returnLogin = new LoginService().execute(email, password).get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        if (returnLogin.contains("Login efetuado com sucesso!")) {
+//            if(pref.getString("userEmail", null)!=null){
+//                startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//            }
+
+        if (returnLogin.length() > 0) {
+            JSONObject userObj = new JSONObject(returnLogin);
+            String nome = userObj.getString("nome");
+            int id = userObj.getInt("id");
+            String userEmail = userObj.getString("email");
+            JSONObject organizacao = userObj.getJSONObject("idOrganizacao");
+            int idOrganizacao = organizacao.getInt("id");
+            String nomeOrganizacao = organizacao.getString("nome");
+
+            SharedPreferences prefs = getSharedPreferences("USER_DATA", Activity.MODE_PRIVATE);
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putString("userNome", nome);
+            editor.putString("userId", Integer.toString(id));
+            editor.putString("userEmail", userEmail);
+            editor.putString("idOrganizacao", Integer.toString(idOrganizacao));
+            editor.putString("nomeOrganizacao", nomeOrganizacao);
+
+            editor.commit();
+
             Toast.makeText(LoginActivity.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
             LoginService.logado = true;
             convidado = false;
@@ -42,6 +64,9 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
             Toast.makeText(LoginActivity.this, "Erro ao logar", Toast.LENGTH_SHORT).show();
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -63,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
         setTitle("Meetings");
 
         inicializacaoDosCampos();
+
+        validaLogin();
 
         Button botaoLogin = findViewById(R.id.login);
         Button botaoFazerCadastro = findViewById(R.id.fazerCadastro);

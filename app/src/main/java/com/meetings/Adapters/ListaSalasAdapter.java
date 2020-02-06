@@ -7,14 +7,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.meetings.Activitieis.Sala;
+import com.meetings.models.Sala;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListaSalasAdapter extends BaseAdapter {
-    private final List<Sala> salas = new ArrayList<>();
-    private Context context;
+    private List<Sala> salas;
+    private final Context context;
+
+
+    public ListaSalasAdapter (List<Sala> salas, Context context) {
+        this.salas = salas;
+        this.context = context;
+    }
 
     /*public void atualiza(List<Sala> salas) {
         this.salas.clear();
@@ -38,21 +43,18 @@ public class ListaSalasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View viewCriada = criaVIew(viewGroup);
-        Sala salaDevolvida = salas.get(i);
-        vincula(viewCriada, salaDevolvida);
-        return viewCriada;
-    }
-
-    private void vincula(View view, Sala sala) {
-        TextView nomeSala = view.findViewById(R.id.nomeSala);
-        //nome.setText(sala.getNome());
-    }
-
-    private View criaVIew(ViewGroup viewGroup) {
-        return LayoutInflater
+        View viewCriada = LayoutInflater
                 .from(context)
                 .inflate(R.layout.sala, viewGroup, false);
+        Sala sala = salas.get(i);
+
+        TextView nome = view.findViewById(R.id.nomeSala);
+        nome.setText(sala.getNomeSala());
+
+        TextView localizacao = view.findViewById(R.id.Andar);
+        localizacao.setText(sala.getLocalizacao());
+
+        return viewCriada;
     }
 
 }

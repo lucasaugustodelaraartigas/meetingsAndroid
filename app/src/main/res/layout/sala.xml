@@ -56,11 +56,11 @@
                 android:textIsSelectable="true"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/nomeSala"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/nomeSala"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/fotoSala"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.144" />
+                app:layout_constraintVertical_bias="0.085" />
 
             <TextView
                 android:id="@+id/Andar"
