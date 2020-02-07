@@ -22,7 +22,6 @@ public class LoginActivity extends AppCompatActivity {
     private EditText campoEmail;
     private EditText campoSenha;
     private ContaUsuario contaUsuario;
-    static public boolean convidado = false;
     static public String returnLogin;
 
     SharedPreferences pref;
@@ -59,7 +58,6 @@ public class LoginActivity extends AppCompatActivity {
 
             Toast.makeText(LoginActivity.this, "Logado com sucesso!", Toast.LENGTH_SHORT).show();
             LoginService.logado = true;
-            convidado = false;
             SalvaEmail();
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
@@ -93,7 +91,6 @@ public class LoginActivity extends AppCompatActivity {
 
         Button botaoLogin = findViewById(R.id.login);
         Button botaoFazerCadastro = findViewById(R.id.fazerCadastro);
-        Button botaoVerConvidado = findViewById(R.id.verConvidado);
 
         campoEmail = findViewById(R.id.email);
         campoSenha = findViewById(R.id.senha);
@@ -107,15 +104,6 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.i("Teste", "onClick: ENTROU");
                 startActivity(new Intent(LoginActivity.this, CadastroActivity.class));
-            }
-        });
-
-        botaoVerConvidado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                convidado = true;
-                LoginService.logado = false;
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
             }
         });
 

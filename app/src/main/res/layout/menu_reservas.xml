@@ -68,7 +68,7 @@
                     android:layout_marginTop="84dp"
                     android:ems="10"
                     android:inputType="time"
-                    app:layout_constraintBottom_toTopOf="@id/butaoConfirmaFiltros"
+                    app:layout_constraintBottom_toTopOf="@id/botaoConfirma"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.223"
                     app:layout_constraintStart_toStartOf="parent"
@@ -95,7 +95,7 @@
                     android:layout_marginTop="44dp"
                     android:ems="10"
                     android:inputType="time"
-                    app:layout_constraintBottom_toTopOf="@id/butaoCancelarFiltros"
+                    app:layout_constraintBottom_toTopOf="@id/botaoCancelar"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.804"
                     app:layout_constraintStart_toStartOf="parent"
@@ -116,19 +116,19 @@
                     app:layout_constraintVertical_bias="1.0" />
 
                 <Button
-                    android:id="@+id/butaoConfirmaFiltros"
+                    android:id="@+id/botaoConfirma"
                     android:layout_width="97dp"
                     android:layout_height="51dp"
                     android:background="#44B5E6"
                     android:text="Confirmar"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/butaoCancelarFiltros"
+                    app:layout_constraintEnd_toStartOf="@+id/botaoCancelar"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.953" />
 
                 <Button
-                    android:id="@+id/butaoCancelarFiltros"
+                    android:id="@+id/botaoCancelar"
                     android:layout_width="106dp"
                     android:layout_height="50dp"
                     android:background="#FF0028"
@@ -153,7 +153,7 @@
                     app:layout_constraintVertical_bias="0.559" />
 
                 <CalendarView
-                    android:id="@+id/calendarView2"
+                    android:id="@+id/calendarView"
                     android:layout_width="299dp"
                     android:layout_height="302dp"
                     android:background="#FFFFFF"

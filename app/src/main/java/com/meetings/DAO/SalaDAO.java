@@ -17,20 +17,20 @@ import static com.meetings.Activitieis.MainActivity.getContextOfApplication;
 public class SalaDAO {
 
     List<Sala> salas = new ArrayList<>();
+    List<String> nomeSalas = new ArrayList<>();
 
-    public List<Sala> lista() {
-
-        SharedPreferences prefs = getContextOfApplication().getSharedPreferences("USER_DATA", Activity.MODE_PRIVATE);
-        String returnSalas = null;
+    public List<Sala> listaCompleta() {
         try {
+            SharedPreferences prefs = getContextOfApplication().getSharedPreferences("USER_DATA", Activity.MODE_PRIVATE);
+            String returnSalas = null;
             returnSalas = new SalasService().execute(prefs.getString("idOrganizacao", null)).get();
 
             JSONArray salasJSON = new JSONArray(returnSalas);
-            if(salasJSON.length() > 2){
-                for (int i = 0; i > salasJSON.length(); i++){
+            if (returnSalas.length() > 2) {
+                for (int i = 0; i < salasJSON.length(); i++) {
                     JSONObject salaJSON = salasJSON.getJSONObject(i);
 
-                    if(salaJSON.has("id") && salaJSON.has("nome") && salaJSON.has("localizacao")) {
+                    if (salaJSON.has("id") && salaJSON.has("nome") && salaJSON.has("localizacao")) {
                         int id = salaJSON.getInt("id");
                         String localizacao = salaJSON.getString("localizacao");
                         String nome = salaJSON.getString("nome");
@@ -38,21 +38,45 @@ public class SalaDAO {
                         Sala sala = new Sala(nome, localizacao, id);
 
                         salas.add(sala);
+                        nomeSalas.add(sala.getNomeSala());
 
                     }
                 }
             }
 
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return salas;
+    }
+    public List<String> listaNome() {
+        try {
+            SharedPreferences prefs = getContextOfApplication().getSharedPreferences("USER_DATA", Activity.MODE_PRIVATE);
+            String returnSalas = null;
+            returnSalas = new SalasService().execute(prefs.getString("idOrganizacao", null)).get();
+
+            JSONArray salasJSON = new JSONArray(returnSalas);
+            if (returnSalas.length() > 2) {
+                for (int i = 0; i < salasJSON.length(); i++) {
+                    JSONObject salaJSON = salasJSON.getJSONObject(i);
+
+                    if (salaJSON.has("nome")) {
+                        String nome = salaJSON.getString("nome");
+
+                        nomeSalas.add(nome);
+
+                    }
+                }
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println(returnSalas);
 
-
-
-        return salas;
+        return nomeSalas;
     }
 
 }
